@@ -1,0 +1,2 @@
+add_executable(geometric_vertex_test geometric_vertex_test.cpp)
+target_link_libraries(geometric_vertex_test PRIVATE obj_parser)
