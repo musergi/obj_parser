@@ -10,3 +10,10 @@ bool GeometricVertex::operator==(GeometricVertex other)
     return m_x == other.m_x && m_y == other.m_y && m_z == other.m_z
         && m_w == other.m_w;
 }
+
+const std::string GeometricVertex::to_string() const
+{
+    std::ostringstream ss;
+    ss << "(" << m_x << ", " << m_y << ", " << m_z << ", " << m_w << ")";
+    return ss.str();
+}
