@@ -10,6 +10,6 @@ private:
 
 public:
     GeometricVertex(float x, float y, float z, float w = 1.0f);
-    bool operator==(GeometricVertex other);
+    bool operator==(GeometricVertex other) const;
     const std::string to_string() const;
 };
