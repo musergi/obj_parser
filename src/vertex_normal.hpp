@@ -10,4 +10,5 @@ private:
 
 public:
     VertexNormal(float i, float j, float k);
+    bool operator==(const VertexNormal &other) const;
 };
