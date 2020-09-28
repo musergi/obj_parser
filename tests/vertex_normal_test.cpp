@@ -10,6 +10,12 @@ int main(int argc, char **argv)
         std::cout << "Equal operator not working." << std::endl;
         return 1;
     }
+    if (vn1.to_string() != "(0, 0, 1)")
+    {
+        std::cout << "Test failed." << std::endl;
+        std::cout << "To string operation failed." << std::endl;
+        return 1;
+    }
     std::cout << "Tests passed." << std::endl;
     return 0;
 }
