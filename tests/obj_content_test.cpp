@@ -19,6 +19,13 @@ int main(int argc, char **argv)
         std::cout << "ObjContent did not return saved vertex." << std::endl;
         return 1;
     }
+    if (obj_content.to_string() != "([(0, 0, 0, 1)], [(0, 0, 1)])")
+    {
+        std::cout << "Test failed." << std::endl;
+        std::cout << obj_content.to_string() <<
+            " did not match expected result" << std::endl;
+        return 0;
+    }
     std::cout << "Tests passed." << std::endl;
     return 0;
 }
