@@ -3,3 +3,9 @@ target_link_libraries(geometric_vertex_test PRIVATE obj_parser)
 
 add_executable(vertex_normal_test vertex_normal_test.cpp)
 target_link_libraries(vertex_normal_test PRIVATE obj_parser)
+
+add_executable(obj_content_test obj_content_test.cpp)
+target_link_libraries(obj_content_test PRIVATE obj_parser)
+
+add_executable(obj_content_file_test obj_content_file_test.cpp)
+target_link_libraries(obj_content_file_test PRIVATE obj_parser)
