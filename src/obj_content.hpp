@@ -1,8 +1,11 @@
 #pragma once
 
+#include <cstdio>
 #include <vector>
 #include <string>
+#include <regex>
 #include <sstream>
+#include <fstream>
 #include "geometric_vertex.hpp"
 #include "vertex_normal.hpp"
 
@@ -13,6 +16,8 @@ private:
     std::vector<VertexNormal> m_vertex_normals;
 
 public:
+    ObjContent() = default;
+    ObjContent(const char *path);
     void addGeometricVertex(const GeometricVertex &geometric_vertex);
     const GeometricVertex &getGeometricVertex(int index) const;
     void addVertexNormal(const VertexNormal &vertex_normal);

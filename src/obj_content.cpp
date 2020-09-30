@@ -1,4 +1,26 @@
 #include "obj_content.hpp"
+#include <iostream>
+
+ObjContent::ObjContent(const char *path)
+{
+    std::string line;
+    std::ifstream input_file_stream(path);
+    while (std::getline(input_file_stream, line))
+    {
+        if (std::regex_match(line, std::regex("v( -?\\d+.\\d+){3,4}")))
+        {
+            float x, y, z;
+            std::sscanf(line.c_str(), "v %f %f %f", &x, &y, &z);
+            addGeometricVertex(GeometricVertex(x, y, z));
+        }
+        else if (std::regex_match(line, std::regex("vn( -?\\d+.\\d+){3}")))
+        {
+            float i, j, k;
+            std::sscanf(line.c_str(), "vn %f %f %f", &i, &j, &k);
+            addVertexNormal(VertexNormal(i, j, k));
+        }
+    }
+}
 
 void ObjContent::addGeometricVertex(const GeometricVertex &geometric_vertex)
 {
