@@ -1,6 +1,8 @@
 #include "obj_content.hpp"
 #include <iostream>
 
+ObjContent::ObjContent() = default;
+
 ObjContent::ObjContent(const char *path)
 {
     std::string line;

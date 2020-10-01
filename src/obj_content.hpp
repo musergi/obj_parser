@@ -16,7 +16,7 @@ private:
     std::vector<VertexNormal> m_vertex_normals;
 
 public:
-    ObjContent() = default;
+    ObjContent();
     ObjContent(const char *path);
     void addGeometricVertex(const GeometricVertex &geometric_vertex);
     const GeometricVertex &getGeometricVertex(int index) const;
