@@ -23,7 +23,7 @@ public:
 class Face
 {
 private:
-    std::vector<Point> points;
+    std::vector<Point> m_points;
 public:
     Face();
     void addPoint(const Point &point);
