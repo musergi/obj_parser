@@ -53,3 +53,17 @@ const Point &Face::getPoint(int index) const
 {
     return m_points[index];
 }
+
+const std::string Face::to_string() const
+{
+    std::ostringstream ss;
+    ss << "[";
+    for (int i = 0; i < m_points.size(); i++)
+    {
+        if (i != 0)
+            ss << ", ";
+        ss << m_points[i].to_string();
+    }
+    ss << "]";
+    return ss.str();
+}
