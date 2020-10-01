@@ -21,6 +21,19 @@ ObjContent::ObjContent(const char *path)
             std::sscanf(line.c_str(), "vn %f %f %f", &i, &j, &k);
             addVertexNormal(VertexNormal(i, j, k));
         }
+        else if (std::regex_match(line, std::regex("f( \\d+/\\d*/\\d*){3,}")))
+        {
+            const char *subline = line.c_str();
+            Face face;
+            while ((subline = strchr(subline + 1, ' ')) != NULL)
+            {
+                unsigned int v, vt, vn;
+                std::sscanf(subline, "%u/%u/%u", &v, &vt, &vn);
+                std::cout << v << " " << vt << " " << vn << std::endl;
+                face.addPoint(Point(v - 1, vt - 1, vn - 1));
+            }
+            // TODO: Add face to content
+        }
     }
 }
 
