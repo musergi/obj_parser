@@ -38,3 +38,18 @@ const std::string Point::to_string() const
         << ", " << m_vertex_normal << ")";
     return ss.str();
 }
+
+int Face::getNumberPoints() const
+{
+    return (int) m_points.size();
+}
+
+void Face::addPoint(const Point &point)
+{
+    m_points.push_back(point);
+}
+
+const Point &Face::getPoint(int index) const
+{
+    return m_points[index];
+}
