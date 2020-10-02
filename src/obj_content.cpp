@@ -32,7 +32,7 @@ ObjContent::ObjContent(const char *path)
                 std::cout << v << " " << vt << " " << vn << std::endl;
                 face.addPoint(Point(v - 1, vt - 1, vn - 1));
             }
-            // TODO: Add face to content
+            addFace(face);
         }
     }
 }
@@ -57,6 +57,11 @@ const VertexNormal &ObjContent::getVertexNormal(int index) const
     return m_vertex_normals[index];
 }
 
+void ObjContent::addFace(const Face &face)
+{
+    m_faces.push_back(face);
+}
+
 const std::string ObjContent::to_string() const
 {
     std::ostringstream ss;
@@ -64,6 +69,8 @@ const std::string ObjContent::to_string() const
     ObjContent::addVectorToInputStringStream(ss, m_geometric_vertices);
     ss << ", ";
     ObjContent::addVectorToInputStringStream(ss, m_vertex_normals);
+    ss << ", ";
+    ObjContent::addVectorToInputStringStream(ss, m_faces);
     ss << ")";
     return ss.str();
 }
