@@ -15,4 +15,5 @@ public:
 private:
     static void parseGeometricVertex(const char *line, ObjContent *content);
     static void parseVertexNormal(const char *line, ObjContent *content);
+    static void parseFace(const char *line, ObjContent *content);
 };

@@ -11,6 +11,7 @@ int main(int argc, char **argv)
     line_parser.parse("vn 0.0 0.0 1.0", &obj);
     VertexNormal parsed_normal = obj.getVertexNormal(0);
     assert_equals(parsed_normal.to_string(), "(0, 0, 1)");
+    line_parser.parse("f 1/1/1 2/2/2 3/3/3", &obj);
     std::cout << "Tests passed." << std::endl;
     return 0;
 }
