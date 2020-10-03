@@ -15,3 +15,6 @@ target_link_libraries(point_test PRIVATE obj_parser)
 
 add_executable(face_test face_test.cpp)
 target_link_libraries(face_test PRIVATE obj_parser)
+
+add_executable(line_parser_test line_parser_test.cpp)
+target_link_libraries(line_parser_test PRIVATE obj_parser)

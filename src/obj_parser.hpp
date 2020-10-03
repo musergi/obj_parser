@@ -4,3 +4,4 @@
 #include "vertex_normal.hpp"
 #include "face.hpp"
 #include "obj_content.hpp"
+#include "line_parser.hpp"
