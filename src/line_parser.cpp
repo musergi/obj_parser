@@ -47,6 +47,5 @@ void LineParser::parseFace(const char *line, ObjContent *content)
         sscanf(line + 1, "%u/%u/%u", &v, &vt, &vn);
         face.addPoint(Point(v, vt, vn));
     }
-    std::cout << "test" << std::endl;
     content->addFace(face);
 }
