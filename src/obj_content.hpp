@@ -1,11 +1,6 @@
 #pragma once
 
-#include <cstdio>
 #include <vector>
-#include <string>
-#include <regex>
-#include <sstream>
-#include <fstream>
 #include "geometric_vertex.hpp"
 #include "vertex_normal.hpp"
 #include "face.hpp"

@@ -44,7 +44,7 @@ void LineParser::parseFace(const char *line, ObjContent *content)
     {
     	unsigned int v, vt, vn;
         sscanf(line + 1, "%u/%u/%u", &v, &vt, &vn);
-        face.addPoint(Point(v, vt, vn));
+        face.addPoint(Point(v - 1, vt - 1, vn - 1));
     }
     content->addFace(face);
 }
