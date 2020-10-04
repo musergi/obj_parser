@@ -1,5 +1,5 @@
-#include "obj_content.hpp"
-#include "obj_file_parser.hpp"
+#include "obj_parser/obj_content.hpp"
+#include "obj_parser/obj_file_parser.hpp"
 
 ObjContent::ObjContent() = default;
 

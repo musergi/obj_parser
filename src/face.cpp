@@ -1,4 +1,4 @@
-#include "face.hpp"
+#include "obj_parser/face.hpp"
 
 Point::Point(unsigned int geometric_vertex, unsigned int texture_vertex,
     unsigned int vertex_normal) : m_geometric_vertex(geometric_vertex),

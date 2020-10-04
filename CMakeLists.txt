@@ -7,6 +7,7 @@ option(OBJ_PARSER_TESTS "Build obj_parser example programs" ON)
 include(GNUInstallDirs)
 include(CMakeDependentOption)
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 add_subdirectory(src)
 
 if (OBJ_PARSER_TESTS)

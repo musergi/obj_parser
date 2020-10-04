@@ -1,5 +1,5 @@
 #include <iostream>
-#include <obj_parser.hpp>
+#include <obj_parser/obj_parser.hpp>
 
 int main(int argc, char **argv)
 {

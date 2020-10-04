@@ -1,4 +1,4 @@
-#include "line_parser.hpp"
+#include "obj_parser/line_parser.hpp"
 
 #define REGEX_V R"(v( [+-]?\d+\.\d+){3})"
 #define REGEX_VN R"(vn( [+-]?\d+\.\d+){3})"

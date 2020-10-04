@@ -1,4 +1,4 @@
-#include "obj_file_parser.hpp"
+#include "obj_parser/obj_file_parser.hpp"
 
 ObjFileParser::ObjFileParser(ObjContent *obj_content)
 	: m_obj_content(obj_content)
