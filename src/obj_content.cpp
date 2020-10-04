@@ -9,30 +9,31 @@ ObjContent::ObjContent(const char *path)
     obj_file_parser.parse(path);
 }
 
-void ObjContent::addGeometricVertex(const GeometricVertex &geometric_vertex)
+void ObjContent::addGeometricVertex(const Vertex<4> &geometric_vertex)
 {
     m_geometric_vertices.push_back(geometric_vertex);
 }
 
-const GeometricVertex &ObjContent::getGeometricVertex(int index) const
-{
-    return m_geometric_vertices[index];
-}
-
-void ObjContent::addVertexNormal(const VertexNormal &vertex_normal)
+void ObjContent::addVertexNormal(const Vertex<3> &vertex_normal)
 {
     m_vertex_normals.push_back(vertex_normal);
-}
-
-const VertexNormal &ObjContent::getVertexNormal(int index) const
-{
-    return m_vertex_normals[index];
 }
 
 void ObjContent::addFace(const Face &face)
 {
     m_faces.push_back(face);
 }
+
+const Vertex<4> &ObjContent::getGeometricVertex(int index) const
+{
+    return m_geometric_vertices[index];
+}
+
+const Vertex<3> &ObjContent::getVertexNormal(int index) const
+{
+    return m_vertex_normals[index];
+}
+
 
 const std::string ObjContent::to_string() const
 {

@@ -6,9 +6,6 @@ add_test(geometric_vertex geometric_vertex_test)
 add_executable(vertex_normal_test vertex_normal_test.cpp)
 add_test(vertex_normal vertex_normal_test)
 
-add_executable(obj_content_test obj_content_test.cpp)
-add_test(obj_content obj_content_test)
-
 add_executable(point_test point_test.cpp)
 add_test(point point_test)
 

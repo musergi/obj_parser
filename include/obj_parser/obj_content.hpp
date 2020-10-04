@@ -1,25 +1,24 @@
 #pragma once
 
 #include <vector>
-#include "geometric_vertex.hpp"
-#include "vertex_normal.hpp"
+#include "vertex.hpp"
 #include "face.hpp"
 
 class ObjContent
 {
 private:
-    std::vector<GeometricVertex> m_geometric_vertices;
-    std::vector<VertexNormal> m_vertex_normals;
+    std::vector<Vertex<4>> m_geometric_vertices;
+    std::vector<Vertex<3>> m_vertex_normals;
     std::vector<Face> m_faces;
 
 public:
     ObjContent();
     ObjContent(const char *path);
-    void addGeometricVertex(const GeometricVertex &geometric_vertex);
-    const GeometricVertex &getGeometricVertex(int index) const;
-    void addVertexNormal(const VertexNormal &vertex_normal);
-    const VertexNormal &getVertexNormal(int index) const;
+    void addGeometricVertex(const Vertex<4> &geometric_vertex);
+    void addVertexNormal(const Vertex<3> &vertex_normal);
     void addFace(const Face &face);
+    const Vertex<4> &getGeometricVertex(int index) const;
+    const Vertex<3> &getVertexNormal(int index) const;
     const std::string to_string() const;
 
 private:
