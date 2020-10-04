@@ -9,29 +9,54 @@ ObjContent::ObjContent(const char *path)
     obj_file_parser.parse(path);
 }
 
+int ObjContent::getGeometricVertexCount() const
+{
+	return geometric_vertices.size();
+}
+
+int ObjContent::getTextureVertexCount() const
+{
+	return texture_vertices.size();
+}
+
+int ObjContent::getVertexNormalCount() const
+{
+	return vertex_normals.size();
+}
+
 void ObjContent::addGeometricVertex(const Vertex<4> &geometric_vertex)
 {
-    m_geometric_vertices.push_back(geometric_vertex);
+    geometric_vertices.push_back(geometric_vertex);
+}
+
+void ObjContent::addTextureVertex(const Vertex<3> &texture_vertex)
+{
+	texture_vertices.push_back(texture_vertex);
 }
 
 void ObjContent::addVertexNormal(const Vertex<3> &vertex_normal)
 {
-    m_vertex_normals.push_back(vertex_normal);
+    vertex_normals.push_back(vertex_normal);
 }
 
 void ObjContent::addFace(const Face &face)
 {
-    m_faces.push_back(face);
+    faces.push_back(face);
 }
 
 const Vertex<4> &ObjContent::getGeometricVertex(int index) const
 {
-    return m_geometric_vertices[index];
+    return geometric_vertices[index];
+}
+
+const Vertex<3> &ObjContent::getTextureVertex(int index) const
+{
+	return texture_vertices[index];
 }
 
 const Vertex<3> &ObjContent::getVertexNormal(int index) const
 {
-    return m_vertex_normals[index];
+    return vertex_normals[index];
 }
 
 
@@ -39,11 +64,11 @@ const std::string ObjContent::to_string() const
 {
     std::ostringstream ss;
     ss << "(";
-    ObjContent::addVectorToInputStringStream(ss, m_geometric_vertices);
+    ObjContent::addVectorToInputStringStream(ss, geometric_vertices);
     ss << ", ";
-    ObjContent::addVectorToInputStringStream(ss, m_vertex_normals);
+    ObjContent::addVectorToInputStringStream(ss, vertex_normals);
     ss << ", ";
-    ObjContent::addVectorToInputStringStream(ss, m_faces);
+    ObjContent::addVectorToInputStringStream(ss, faces);
     ss << ")";
     return ss.str();
 }
