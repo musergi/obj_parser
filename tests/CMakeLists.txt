@@ -1,22 +1,24 @@
+link_libraries(obj_parser)
+
 add_executable(geometric_vertex_test geometric_vertex_test.cpp)
-target_link_libraries(geometric_vertex_test PRIVATE obj_parser)
+add_test(geometric_vertex geometric_vertex_test)
 
 add_executable(vertex_normal_test vertex_normal_test.cpp)
-target_link_libraries(vertex_normal_test PRIVATE obj_parser)
+add_test(vertex_normal vertex_normal_test)
 
 add_executable(obj_content_test obj_content_test.cpp)
-target_link_libraries(obj_content_test PRIVATE obj_parser)
-
-add_executable(obj_content_file_test obj_content_file_test.cpp)
-target_link_libraries(obj_content_file_test PRIVATE obj_parser)
+add_test(obj_content obj_content_test)
 
 add_executable(point_test point_test.cpp)
-target_link_libraries(point_test PRIVATE obj_parser)
+add_test(point point_test)
 
 add_executable(face_test face_test.cpp)
-target_link_libraries(face_test PRIVATE obj_parser)
+add_test(face face_test)
 
 add_executable(line_parser_test line_parser_test.cpp)
-target_link_libraries(line_parser_test PRIVATE obj_parser)
+add_test(line_parser line_parser_test)
 
 add_executable(vertex_test vertex_test.cpp)
+add_test(vertex vertex_test)
+
+add_executable(obj_content_file_test obj_content_file_test.cpp)
