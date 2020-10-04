@@ -1,2 +1,5 @@
 .vscode/
+.cproject
+.project
+.settings
 build/
