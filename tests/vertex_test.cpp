@@ -13,6 +13,7 @@ int main()
 	assert_equals(buffer[0], 1.0f);
 	assert_equals(buffer[1], -1.0f);
 	assert_equals(buffer[2], 0.0f);
+	assert_equals(vertex.to_string(), "(1, -1, 0)");
 	std::cout << "Tests passed." << std::endl;
 	return 0;
 }
