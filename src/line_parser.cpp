@@ -1,5 +1,4 @@
 #include "line_parser.hpp"
-#include <iostream>
 
 #define REGEX_V R"(v( [+-]?\d+\.\d+){3})"
 #define REGEX_VN R"(vn( [+-]?\d+\.\d+){3})"
@@ -41,7 +40,7 @@ void LineParser::parseVertexNormal(const char *line, ObjContent *content)
 void LineParser::parseFace(const char *line, ObjContent *content)
 {
 	Face face;
-    while(line = std::strchr(line + 1, ' '))
+    while((line = std::strchr(line + 1, ' ')) != NULL)
     {
     	unsigned int v, vt, vn;
         sscanf(line + 1, "%u/%u/%u", &v, &vt, &vn);
