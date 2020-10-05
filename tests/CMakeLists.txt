@@ -15,4 +15,9 @@ add_test(vertex vertex_test)
 add_executable(obj_content_test obj_content_test.cpp)
 add_test(obj_content obj_content_test)
 
+add_executable(vertex_parser_creation_test vertex_parser_creation_test.cpp)
+add_test(vertex_parser_creation vertex_parser_creation_test)
+add_executable(vertex_parser_getting_test vertex_parser_getting_test.cpp)
+add_test(vertex_parser_getting vertex_parser_getting_test)
+
 add_executable(obj_content_file_test obj_content_file_test.cpp)
