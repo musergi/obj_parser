@@ -59,6 +59,7 @@ class Face {
     - points: std::vector<Point>
     + getPointCount(): int
     + operator[](int index): const Point &
+    + addPoint(const Point &point): void
     + to_string(): const std::string
 }
 
