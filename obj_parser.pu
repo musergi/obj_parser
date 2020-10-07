@@ -26,7 +26,12 @@ class ObjParser {
 }
 
 class FaceParser {
+	- face_string: const std::string
+	- point_offset: std::size_t
+	+ FaceParser(const std::string &face_string)
+	+ hasPoint(): bool
     + nextPoint(): const Point
+    - movePointerToNextPoint(): void
 }
 
 class VertexData {
