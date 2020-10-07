@@ -1,0 +1,78 @@
+@startuml
+
+class Vertex << T: int >> {
+    - components: float[N]
+    - used_components: int
+    + Vertex(float *buffer, int components)
+    + getUsedComponents(): int
+    + operator[](int index): float
+    + toBuffer(float *buffer, int desired_components): void
+    + to_string(): const std::string
+}
+
+class VertexParser {
+    - vertex_type: std::string
+    - vertex_content: std::string
+    - content_offset: std::size_t
+    + VertexParser(const std::string &vertex_string)
+    + hasFloat(): bool
+    + getNextFloat(): float
+    + getType(): const std::string
+}
+
+class ObjParser {
+    - obj_content: ObjContent *
+    + parse(const char *path): void
+}
+
+class FaceParser {
+    + nextPoint(): const Point
+}
+
+class VertexData {
+    - geometric_vertices: std::vector<Vertex<4>>
+    - texture_vertices: std::vector<Vertex<3>>
+    - vertex_normals: std::vector<Vertex<3>>
+    + getGeometricVertexCount(): unsigned int
+    + getTextureVertexCount(): unsigned int
+    + getVertexNormalCount(): unsigned int
+    + getGeometricVertex(unsigned int pointer): const Vertex<4> &
+    + getTextureVertex(unsigned int pointer): const Vertex<3> &
+    + getVertexNormal(unsigned int pointer): const Vertex<3> &
+    + to_string(): const std::string
+}
+
+class ObjContent {
+    - vertex_data: VertexData
+    + getFaceCount(): unsigned int
+    + getFace(unsigned int index): const Face &
+    + getVertexData(): VertexData &
+    + to_string(): const std::string
+}
+
+class Face {
+    - points: std::vector<Point>
+    + getPointCount(): int
+    + operator[](int index): const Point &
+    + to_string(): const std::string
+}
+
+class Point {
+    - vertices_pointers: unsigned int[3]
+    + hasTextureVertex(): bool
+    + hasVertexNormal(): bool
+    + getGeometricVertexPointer(): unsigned int
+    + getTextureVertexPointer(): unsigned int
+    + getVertexNormalPointer(): unsigned int
+    + to_string(): const std::string
+}
+
+ObjContent *-- VertexData
+VertexData *-- Vertex
+ObjContent *-- Face
+Face *-- Point
+ObjParser o-- ObjContent 
+ObjParser ..> VertexParser
+ObjParser ..> FaceParser
+
+@enduml
