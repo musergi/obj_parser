@@ -1,5 +1,4 @@
 #include "obj_parser/vertex_parser.hpp"
-#include <iostream>
 
 int main()
 {
