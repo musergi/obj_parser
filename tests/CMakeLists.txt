@@ -1,5 +1,8 @@
 link_libraries(obj_parser)
 
+add_executable(face_parser_test face_parser_test.cpp)
+add_test(face_parser face_parser_test)
+
 add_executable(point_creation_test point_creation_test.cpp)
 add_test(point_creation point_creation_test)
 
