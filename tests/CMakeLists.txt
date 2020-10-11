@@ -10,3 +10,6 @@ add_executable(vertex_parser_creation_test vertex_parser_creation_test.cpp)
 add_test(vertex_parser_creation vertex_parser_creation_test)
 add_executable(vertex_parser_getting_test vertex_parser_getting_test.cpp)
 add_test(vertex_parser_getting vertex_parser_getting_test)
+
+add_executable(obj_parser_test obj_parser_test.cpp)
+add_test(obj_parser obj_parser_test ${CMAKE_CURRENT_SOURCE_DIR}/test_cube.obj)

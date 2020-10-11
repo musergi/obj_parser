@@ -18,5 +18,6 @@ int main() {
 	if (point3.hasTextureVertex() == true) return 1;
 	if (point3.hasVertexNormal() == true) return 1;
 	if (point3.getGeometricVertexPointer() != 3) return 1;
+	if (face_parser.hasPoint()) return 1;
 	return 0;
 }

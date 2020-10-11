@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include <exception>
+#include "vertex_parser.hpp"
 
 template<int N>
 class Vertex
@@ -13,25 +14,18 @@ private:
 	int used_components;
 
 public:
-	Vertex(const std::string &str);
+	Vertex(VertexParser &vertex_parser);
 	int getUsedComponents() const;
 	float operator[](int index) const;
 	void toBuffer(float *buffer, int desired_components) const;
 	const std::string to_string() const;
-
-private:
-	static bool moveToNextFloat(const char **str_ptr);
 };
 
 template<int N>
-Vertex<N>::Vertex(const std::string &str)
+Vertex<N>::Vertex(VertexParser &vertex_parser) : used_components(0)
 {
-	int component_count = 0;
-	const char *float_start = str.c_str();
-	do
-		sscanf(float_start, "%f", &components[component_count++]);
-	while(moveToNextFloat(&float_start));
-	used_components = component_count;
+	while (vertex_parser.hasFloat())
+		components[used_components++] = vertex_parser.getNextFloat();
 }
 
 template<int N>
@@ -69,14 +63,4 @@ const std::string Vertex<N>::to_string() const
 	}
 	stream << ")";
 	return std::move(stream.str());
-}
-
-template<int N>
-bool Vertex<N>::moveToNextFloat(const char **str_ptr)
-{
-	const char *next_space_ptr = std::strchr(*str_ptr, ' ');
-	if (!next_space_ptr)
-		return false;
-	*str_ptr = next_space_ptr + 1;
-	return true;
 }

@@ -49,9 +49,11 @@ class VertexData {
 
 class ObjContent {
     - vertex_data: VertexData
+    - faces: std::vector<Face>
     + getFaceCount(): unsigned int
     + getFace(unsigned int index): const Face &
     + getVertexData(): VertexData &
+    + addFace(const Face &face): void
     + to_string(): const std::string
 }
 

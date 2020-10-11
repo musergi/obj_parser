@@ -1,5 +1,4 @@
 #include "obj_parser/face_parser.hpp"
-#include <iostream>
 
 #define DEFAULT_VT 0
 #define DEFAULT_VN 0
@@ -24,7 +23,11 @@ const Point FaceParser::nextPoint() {
 
 void FaceParser::movePointers() {
 	point_offset += point_length + 1;
-	point_length = face_string.find(' ', point_offset) - point_offset;
+	std::size_t next_space = face_string.find(' ', point_offset);
+	if (next_space != std::string::npos)
+		point_length = next_space - point_offset;
+	else
+		point_length = face_string.size() - point_offset;
 }
 
 const Point FaceParser::parsePoint(const std::string &point_string) {

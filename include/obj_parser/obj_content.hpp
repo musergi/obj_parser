@@ -6,6 +6,6 @@
 
 class ObjContent {
 public:
-	VertexData vertex_data
+	VertexData vertex_data;
 	std::vector<Face> faces;
 };
