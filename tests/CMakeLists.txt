@@ -1,15 +1,9 @@
 link_libraries(obj_parser)
 
-add_executable(face_parser_test face_parser_test.cpp)
-add_test(face_parser face_parser_test)
+function(add_executable_test name)
+    add_executable(${name}_test ${name}_test.cpp)
+    add_test(${name} ${name}_test)
+endfunction()
 
-add_executable(point_creation_test point_creation_test.cpp)
-add_test(point_creation point_creation_test)
-
-add_executable(vertex_parser_creation_test vertex_parser_creation_test.cpp)
-add_test(vertex_parser_creation vertex_parser_creation_test)
-add_executable(vertex_parser_getting_test vertex_parser_getting_test.cpp)
-add_test(vertex_parser_getting vertex_parser_getting_test)
-
-add_executable(obj_parser_test obj_parser_test.cpp)
-add_test(obj_parser obj_parser_test ${CMAKE_CURRENT_SOURCE_DIR}/test_cube.obj)
+add_executable_test(vertex_parser_create)
+add_executable_test(vertex_parser_not_empty_on_create)
