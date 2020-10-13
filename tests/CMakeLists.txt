@@ -7,3 +7,5 @@ endfunction()
 
 add_executable_test(vertex_parser_create)
 add_executable_test(vertex_parser_not_empty_on_create)
+add_executable_test(vertex_parser_next_float)
+add_executable_test(vertex_creation)

@@ -24,7 +24,7 @@ public:
 template<int N>
 Vertex<N>::Vertex(VertexParser &vertex_parser) : used_components(0)
 {
-	while (vertex_parser.hasFloat())
+	while (vertex_parser.hasFloat() && used_components < N)
 		components[used_components++] = vertex_parser.getNextFloat();
 }
 
