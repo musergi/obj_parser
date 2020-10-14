@@ -18,7 +18,6 @@ public:
 	int getUsedComponents() const;
 	float operator[](int index) const;
 	void toBuffer(float *buffer, int desired_components) const;
-	const std::string to_string() const;
 };
 
 template<int N>
@@ -48,19 +47,4 @@ void Vertex<N>::toBuffer(float *buffer, int desired_components) const
 	if (desired_components > used_components)
 		throw std::invalid_argument("Index out of bounds");
 	std::memcpy(buffer, components, desired_components * sizeof(float));
-}
-
-template<int N>
-const std::string Vertex<N>::to_string() const
-{
-	std::ostringstream stream;
-	stream << "(";
-	for (int i = 0; i < used_components; i++)
-	{
-		if (i != 0)
-			stream << ", ";
-		stream << components[i];
-	}
-	stream << ")";
-	return std::move(stream.str());
 }
