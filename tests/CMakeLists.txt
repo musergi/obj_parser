@@ -2,7 +2,7 @@ link_libraries(obj_parser)
 
 function(add_executable_test name)
     add_executable(${name}_test ${name}_test.cpp)
-    add_test(${name} ${name}_test)
+    add_test(NAME ${name} COMMAND ${name}_test WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 endfunction()
 
 add_executable_test(vertex_parser_create)
