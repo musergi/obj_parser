@@ -34,13 +34,15 @@ const Point FaceParser::parsePoint(const std::string &point_string) {
 	unsigned int v, vt = 0, vn = 0;
 	std::size_t offset;
 	v = std::stoul(point_string, &offset);
-	if (point_string.at(++offset) != '/') {
-		std::size_t num_length;
-		vt = std::stoul(point_string.substr(offset), &num_length);
-		offset += num_length;
-	}
-	if (++offset < point_string.size()) {
-		vn = std::stoul(point_string.substr(offset));
+	if (offset < point_string.size() - 1) {
+		if (point_string.at(++offset) != '/') {
+			std::size_t num_length;
+			vt = std::stoul(point_string.substr(offset), &num_length);
+			offset += num_length;
+		}
+		if (++offset < point_string.size()) {
+			vn = std::stoul(point_string.substr(offset));
+		}
 	}
 	return Point(v, vt, vn);
 }
