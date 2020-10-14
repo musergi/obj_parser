@@ -43,7 +43,7 @@ void ObjParser::parseFace(const std::string &line) {
 	FaceParser face_parser(line);
 	Face face;
 	while (face_parser.hasPoint()) {
-		face.points.push_back(face_parser.nextPoint());
+		face.addPoint(face_parser.nextPoint());
 	}
 	obj_content->faces.push_back(face);
 }
