@@ -45,5 +45,5 @@ void ObjParser::parseFace(const std::string &line) {
 	while (face_parser.hasPoint()) {
 		face.addPoint(face_parser.nextPoint());
 	}
-	obj_content->faces.push_back(face);
+	obj_content->addFace(face);
 }
