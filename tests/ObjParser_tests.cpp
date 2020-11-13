@@ -3,6 +3,8 @@
 
 #include <sstream>
 
+#define FLOAT_TOLERANCE 1e-8
+
 #define VERTEX_COMPONENTS 8
 #define ARRAY_BUFFER_STRIDE_SIZE VERTEX_COMPONENTS * sizeof(float)
 
@@ -11,54 +13,64 @@ TEST(obj_parser, creation) {
     ObjParser obj_parser(stream);
 }
 
-TEST(obj_parser, vertex_size) {
-    std::istringstream stream1("v 0.0 0.0 0.0");
-    ObjParser obj_parser1(stream1);
-    ASSERT_EQ(obj_parser1.getGLArrayBufferSize(), 0);
+TEST(obj_parser, vertex_size_no_faces) {
+    std::istringstream stream("v 0.0 0.0 0.0");
+    ObjParser obj_parser(stream);
+    ASSERT_EQ(obj_parser.getGLArrayBufferSize(), 0);
+}
 
-    std::istringstream stream2(
+TEST(obj_parser, vertex_size_position_triangle) {
+    std::istringstream stream(
         "v 0.0 0.0 0.0\n"
         "v 1.0 0.0 0.0\n"
         "v 1.0 1.0 0.0\n"
         "f 1 2 3");
-    ObjParser obj_parser2(stream2);
-    ASSERT_EQ(obj_parser2.getGLArrayBufferSize(), ARRAY_BUFFER_STRIDE_SIZE * 3);
+    ObjParser obj_parser(stream);
+    ASSERT_EQ(obj_parser.getGLArrayBufferSize(), ARRAY_BUFFER_STRIDE_SIZE * 3);
+}
 
-    std::istringstream stream3(
+TEST(obj_parser, vertex_size_position_quad) {
+    std::istringstream stream(
         "v 0.0 0.0 0.0\n"
         "v 1.0 0.0 0.0\n"
         "v 1.0 1.0 0.0\n"
-        "v 0.0 1.1 0.0\n"
+        "v 0.0 1.0 0.0\n"
         "f 1 2 3\n"
         "f 1 3 4");
-    ObjParser obj_parser3(stream3);
-    ASSERT_EQ(obj_parser3.getGLArrayBufferSize(), ARRAY_BUFFER_STRIDE_SIZE * 4);
+    ObjParser obj_parser(stream);
+    ASSERT_EQ(obj_parser.getGLArrayBufferSize(), ARRAY_BUFFER_STRIDE_SIZE * 4);
+}
 
-    std::istringstream stream4(
+TEST(obj_parser, vertex_size_complete_quad) {
+    std::istringstream stream(
         "v 0.0 0.0 0.0\n"
         "v 1.0 0.0 0.0\n"
         "v 1.0 1.0 0.0\n"
-        "v 0.0 1.1 0.0\n"
+        "v 0.0 1.0 0.0\n"
         "vt 0.0 0.0\n"
         "vn 0.0 0.0 1.0\n"
         "f 1/1/1 2/1/1 3/1/1\n"
         "f 1/1/1 3/1/1 4/1/1");
-    ObjParser obj_parser4(stream4);
-    ASSERT_EQ(obj_parser4.getGLArrayBufferSize(), ARRAY_BUFFER_STRIDE_SIZE * 4);
+    ObjParser obj_parser(stream);
+    ASSERT_EQ(obj_parser.getGLArrayBufferSize(), ARRAY_BUFFER_STRIDE_SIZE * 4);
+}
 
-    std::istringstream stream5(
+TEST(obj_parser, vertex_size_only_texture_quad) {
+    std::istringstream stream(
         "v 0.0 0.0 0.0\n"
         "v 1.0 0.0 0.0\n"
         "v 1.0 1.0 0.0\n"
-        "v 0.0 1.1 0.0\n"
+        "v 0.0 1.0 0.0\n"
         "vt 0.0 0.0\n"
         "vt 1.0 1.0\n"
         "f 1/1 2/1 3/1\n"
         "f 1/2 3/2 4/2");
-    ObjParser obj_parser5(stream5);
-    ASSERT_EQ(obj_parser5.getGLArrayBufferSize(), ARRAY_BUFFER_STRIDE_SIZE * 6);
+    ObjParser obj_parser(stream);
+    ASSERT_EQ(obj_parser.getGLArrayBufferSize(), ARRAY_BUFFER_STRIDE_SIZE * 6);
+}
 
-    std::istringstream stream6(
+TEST(obj_parser, vertex_size_only_normal_quad) {
+    std::istringstream stream(
         "v 0.0 0.0 0.0\n"
         "v 1.0 0.0 0.0\n"
         "v 1.0 1.0 0.0\n"
@@ -66,17 +78,45 @@ TEST(obj_parser, vertex_size) {
         "vn 0.0 0.0 -11.0\n"
         "f 1//1 2//1 3//1\n"
         "f 1//2 2//2 3//2");
-    ObjParser obj_parser6(stream6);
-    ASSERT_EQ(obj_parser6.getGLArrayBufferSize(), ARRAY_BUFFER_STRIDE_SIZE * 6);
+    ObjParser obj_parser(stream);
+    ASSERT_EQ(obj_parser.getGLArrayBufferSize(), ARRAY_BUFFER_STRIDE_SIZE * 6);
 }
 
-TEST(obj_parser, vertex_buffer) {
-    std::istringstream stream1(
+
+void assertFloatBufferEquals(float *actual, float *expected, unsigned int count) {
+    for (int i = 0; i < count; i++) {
+        ASSERT_NEAR(actual[i], expected[i], FLOAT_TOLERANCE);
+    }
+}
+
+
+TEST(obj_parser, vertex_buffer_position_triangle) {
+    std::istringstream stream(
         "v 0.0 0.0 0.0\n"
         "v 1.0 0.0 0.0\n"
         "v 1.0 1.0 0.0\n"
         "f 1 2 3");
-    float buffer1[3 * VERTEX_COMPONENTS];
-    ObjParser obj_parser1(stream1);
-    obj_parser1.toGLArrayBuffer(buffer1, sizeof(buffer1));
+    ObjParser obj_parser(stream);
+    float buffer[3 * VERTEX_COMPONENTS];
+    obj_parser.toGLArrayBuffer(buffer, sizeof(buffer));
+    float buffer_expected[3 * VERTEX_COMPONENTS] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+        0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
+    assertFloatBufferEquals(buffer, buffer_expected, 3 * VERTEX_COMPONENTS);
+}
+
+TEST(obj_parser, vertex_buffer_position_quad) {
+    std::istringstream stream(
+        "v 0.0 0.0 0.0\n"
+        "v 1.0 0.0 0.0\n"
+        "v 1.0 1.0 0.0\n"
+        "v 0.0 1.0 0.0\n"
+        "f 1 2 3\n"
+        "f 1 3 4");
+    ObjParser obj_parser(stream);
+    float buffer[4 * VERTEX_COMPONENTS];
+    obj_parser.toGLArrayBuffer(buffer, sizeof(buffer));
+    float buffer_expected[4 * VERTEX_COMPONENTS] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+        0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
+        0.0f, 0.0f, 0.0f};
+    assertFloatBufferEquals(buffer, buffer_expected, 4 * VERTEX_COMPONENTS);
 }

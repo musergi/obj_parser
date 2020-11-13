@@ -20,6 +20,7 @@ class ObjParser {
     void toGLElementArrayBuffer(unsigned int *buffer, size_t buffer_size);
 
   private:
+    std::vector<float> positions;
     std::vector<Point> found_points;
     bool contains(const Point &point) const;
 };
