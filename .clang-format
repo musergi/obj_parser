@@ -1,7 +1,7 @@
 ﻿BasedOnStyle: Google
 AccessModifierOffset: '-2'
 AlignAfterOpenBracket: DontAlign
-ColumnLimit: '120'
+ColumnLimit: '80'
 IndentWidth: '4'
 MaxEmptyLinesToKeep: '3'
 PointerAlignment: Right

@@ -6,9 +6,11 @@
 class Point {
   public:
     unsigned int vp, vt, vn;
-    Point() = default;
+    Point() : vp(0), vt(0), vn(0) {};
     Point(const Point &point) = default;
-    inline bool operator==(const Point &other) const { return vp == other.vp && vt == other.vt && vn == other.vn; }
+    inline bool operator==(const Point &other) const {
+        return vp == other.vp && vt == other.vt && vn == other.vn;
+    }
 };
 
 class ObjParser {
@@ -21,6 +23,9 @@ class ObjParser {
 
   private:
     std::vector<float> positions;
-    std::vector<Point> found_points;
-    bool contains(const Point &point) const;
+    std::vector<float> textures;
+    std::vector<float> normals;
+    std::vector<Point> unique_points;
+    std::vector<unsigned int> indices;
+    bool findAndAddIndex(const Point &point);
 };
