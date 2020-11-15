@@ -6,7 +6,7 @@
 class Point {
   public:
     unsigned int vp, vt, vn;
-    Point() : vp(0), vt(0), vn(0) {};
+    Point() : vp(0), vt(0), vn(0){};
     Point(const Point &point) = default;
     inline bool operator==(const Point &other) const {
         return vp == other.vp && vt == other.vt && vn == other.vn;

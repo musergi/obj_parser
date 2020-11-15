@@ -102,7 +102,8 @@ void ObjParser::toGLArrayBuffer(float* buffer, size_t buffer_size) {
     }
 }
 
-void ObjParser::toGLElementArrayBuffer(unsigned int *buffer, unsigned long buffer_size) {
+void ObjParser::toGLElementArrayBuffer(
+    unsigned int* buffer, unsigned long buffer_size) {
     if (buffer_size < indices.size() * sizeof(unsigned int))
         throw std::logic_error("Buffer too small");
     for (int i = 0; i < indices.size(); i++) {

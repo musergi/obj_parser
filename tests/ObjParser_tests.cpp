@@ -149,7 +149,8 @@ TEST(obj_parser, index_size) {
         "v 1.0 1.0 0.0\n"
         "f 1 2 3");
     ObjParser obj_parser(stream);
-    ASSERT_EQ(obj_parser.getGLElementArrayBufferSize(), 3 * sizeof(unsigned int));
+    ASSERT_EQ(
+        obj_parser.getGLElementArrayBufferSize(), 3 * sizeof(unsigned int));
 }
 
 TEST(obj_parser, index_size_complete_quad) {
@@ -163,7 +164,8 @@ TEST(obj_parser, index_size_complete_quad) {
         "f 1/1/1 2/1/1 3/1/1\n"
         "f 1/1/1 3/1/1 4/1/1");
     ObjParser obj_parser(stream);
-    ASSERT_EQ(obj_parser.getGLElementArrayBufferSize(), 6 * sizeof(unsigned int));
+    ASSERT_EQ(
+        obj_parser.getGLElementArrayBufferSize(), 6 * sizeof(unsigned int));
 }
 
 TEST(obj_parser, index_buffer_position_triangle) {
